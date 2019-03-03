@@ -2,17 +2,20 @@
 //Store input from stdin to a linked list structure
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct _node {
+#include "list.h"
+struct _node {
     int value;
     struct _node *next;
-} node;
+};
 
-typedef struct _list {
+struct _list {
     node *head;
     int nitems;
-} list;
+};
 
+//helper functions:
+node *newNode(int n);
+ 
 //creates an empty new list
 list *newlist(void) {
     list *new = malloc(sizeof(list));
@@ -22,7 +25,7 @@ list *newlist(void) {
 }
 
 //add value to list to the start of node
-void *push(int n, list *l) {
+void push(int n, list *l) {
     node *first = l->head;
     node *new = newNode(n);
     new->next = l->head;
@@ -30,7 +33,7 @@ void *push(int n, list *l) {
     l->nitems++;
 }
 
-void *addValueEnd(int n, list *l) {
+void addValueEnd(int n, list *l) {
     node *tmp = l->head;
     node *new = newNode(n);
     if (tmp == NULL) {
@@ -64,20 +67,34 @@ int findN(list *l, int n) {
     }
 }
 
-//delete the first element(pop)
-node *pop(list *l) {
+void printList(list *l) {
     if(l->head == NULL) {
-        return NULL;
+        return;
+    }
+
+    node *tmp = l->head;
+    printf("List: ");
+    while(tmp!= NULL) {
+        printf("%d ", tmp->value);
+        tmp = tmp->next;
+    }
+    printf("\n");
+}
+
+//delete the first element(pop)
+int pop(list *l) {
+    if(l->head == NULL) {
+        return -1;
     }
     node *tmp = l->head;
-    node *
-
+    l->head = l->head->next;
+    return tmp->value;
 }
 //Helper functions:
 node *newNode(int n) {
     node *new = malloc(sizeof(node));
-    node->value = n;
-    node->next = NULL;
+    new->value = n;
+    new->next = NULL;
     return new;
 }
 
