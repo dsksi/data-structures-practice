@@ -6,6 +6,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+/* potential improvements for further changes: 
+    store bracket in 2D array
+    have stack pile with array of 3 stack pointers
+
+    Another approach:
+    can also instead use value indexed arrays -> assign each bracket value
+        ie. {} -> 0, [] -> 1, () -> 2
+    just increment numbers stored in array
+    if try to decrement below 0, return unbalanced
+    if balanced should all reset back to [0,0,0]
+*/ 
 typedef struct _node {
     struct _node* next;
 } node;
